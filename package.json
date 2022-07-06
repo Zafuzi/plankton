@@ -1,15 +1,15 @@
 {
-  "name": "shark",
+  "name": "plankton",
   "scripts": {
     "tauri": "tauri",
-    "tauri_dev": "tauri dev",
-    "build": ""
+    "tauri_dev": "tauri dev"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.0.1"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^1.0.0"
+    "@tauri-apps/cli": "^1.0.0",
+    "squids": "^6.1.2"
   },
   "license": "Apache-2.0"
 }

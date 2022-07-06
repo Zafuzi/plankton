@@ -3,11 +3,11 @@
   "build": {
     "beforeBuildCommand": "",
     "beforeDevCommand": "",
-    "devPath": "http://localhost:5555/public",
+    "devPath": "http://localhost:12345",
     "distDir": "../public"
   },
   "package": {
-    "productName": "shark",
+    "productName": "plankton",
     "version": "0.1.0"
   },
   "tauri": {
@@ -29,7 +29,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.zafuzi.shark",
+      "identifier": "com.zafuzi.plankton",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -58,7 +58,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "shark",
+        "title": "Plankton",
         "width": 800
       }
     ]

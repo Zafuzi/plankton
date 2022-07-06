@@ -2,7 +2,8 @@
   "name": "plankton",
   "scripts": {
     "tauri": "tauri",
-    "tauri_dev": "tauri dev"
+    "tauri_dev": "tauri dev",
+    "tauri_build": "tauri build"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.0.1"

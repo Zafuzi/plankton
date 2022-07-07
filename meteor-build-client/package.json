@@ -1,0 +1,72 @@
+{
+  "_from": "meteor-build-client",
+  "_id": "meteor-build-client@1.2.1",
+  "_inBundle": false,
+  "_integrity": "sha512-q1f+AK26ciKlBysZbvlbCB/H7RQfaGYXrfKjQFgjmRlaLyw5LZtJ+XNYp805RHS8LtI93v3DgdENtBeDCA+qVg==",
+  "_location": "/meteor-build-client",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "meteor-build-client",
+    "name": "meteor-build-client",
+    "escapedName": "meteor-build-client",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/meteor-build-client/-/meteor-build-client-1.2.1.tgz",
+  "_shasum": "c3d65eb4cb09d509eff6629d38f8fe03942659ea",
+  "_spec": "meteor-build-client",
+  "_where": "/home/zach/ExternalStorage/d/plankton",
+  "analyze": true,
+  "author": {
+    "name": "Fabian Vogelsteller",
+    "email": "fabian@frozeman.de"
+  },
+  "bin": {
+    "meteor-build-client": "main.js"
+  },
+  "bugs": {
+    "url": "https://github.com/frozeman/meteor-build-client/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Morten N.O. Nørgaard Henriksen",
+      "email": "mh@gi2.dk"
+    }
+  ],
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "buffered-spawn": "^3.3.2",
+    "commander": "^6.2.0",
+    "fs-extra": "^9.0.1",
+    "underscore": "^1.12.0"
+  },
+  "deprecated": false,
+  "description": "A bundles the client part of a Meteor app.",
+  "devDependencies": {},
+  "homepage": "https://github.com/frozeman/meteor-build-client#readme",
+  "keywords": [
+    "meteor",
+    "meteor build",
+    "meteor build client",
+    "meteor build browser",
+    "client",
+    "client-only",
+    "browser-only"
+  ],
+  "license": "MIT",
+  "main": "main.js",
+  "name": "meteor-build-client",
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frozeman/meteor-build-client.git"
+  },
+  "version": "1.2.1"
+}

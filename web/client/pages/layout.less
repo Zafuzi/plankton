@@ -1,0 +1,68 @@
+@import "../variables.less";
+@import "../fonts.less";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100vw;
+    overflow-x: hidden;
+
+    font-family: Raleway, sans-serif;
+    font-size: 12pt;
+
+    line-height: 1.2;
+
+    background-color: @light;
+    color: @dark;
+}
+
+.appHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 24px;
+
+    font-weight: 700;
+
+    .linedNumbers;
+
+    &__title {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+
+        a {
+            color: @dim;
+
+            &:visited {
+                color: @dim;
+            }
+
+            &:active, &:hover {
+                color: @dark;
+            }
+        }
+
+        h1 {
+            font-size: 22pt;
+        }
+    }
+
+    nav {
+        a {
+            &.active {
+                border-bottom: 2px solid @positive;
+            }
+        }
+    }
+}
+
+a {
+    text-decoration: none;
+    color: @positive;
+    font-weight: 600;
+}

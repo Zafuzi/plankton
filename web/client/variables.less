@@ -1,0 +1,59 @@
+@positive-hue: 205;
+
+@positive: hsl(@positive-hue, 100%, 39%);
+@positive-darker: hsl(@positive-hue, 100%, 26%);
+@positive-darker-x2: hsl(@positive-hue, 100%, 14%);
+@positive-light: hsl(@positive-hue, 100%, 49%); // positive but lightness of 95%
+@positive-lighter: hsl(@positive-hue, 100%, 95%); // positive but lightness of 95%
+
+
+@light: hsl(0, 0%, 99%);
+@neutral: hsl(0, 0%, 90%);
+@dim: hsl(0, 0%, 50%);
+@dark: hsl(0, 0%, 1%);
+
+
+// buttons
+.button {
+
+    padding: 8px 16px;
+    color: @dark;
+    background-color: @neutral;
+
+    border: none;
+    border-radius: 30px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    &-positive {
+        background-color: @positive;
+        color: @light;
+    }
+}
+
+/**
+	This class removes the 'old-style' numerics on Raleway font
+ */
+ .linedNumbers {
+	font-variant-numeric: lining-nums;
+	-moz-font-feature-settings:"lnum" 1;
+	-moz-font-feature-settings:"lnum=1";
+	-ms-font-feature-settings:"lnum" 1;
+	-o-font-feature-settings:"lnum" 1;
+	-webkit-font-feature-settings:"lnum" 1;
+	font-feature-settings:"lnum" 1;
+}
+
+/**
+	For use with flexbox and grid layouts
+	Will apply a gap on the vertical and horizontal axis unless otherwise specified
+ */
+.gap {
+	&-4 { gap: 4px; }
+	&-8 { gap: 8px; }
+	&-16 { gap: 16px; }
+	&-24 { gap: 24px; }
+	&-48 { gap: 48px; }
+}

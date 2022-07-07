@@ -1,10 +1,10 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeBuildCommand": "",
+    "beforeBuildCommand": "cd web; npm run build;",
     "beforeDevCommand": "",
-    "devPath": "http://localhost:12345",
-    "distDir": "../public"
+    "devPath": "http://localhost:4000",
+    "distDir": "../meteor-public"
   },
   "package": {
     "productName": "plankton",
@@ -12,7 +12,10 @@
   },
   "tauri": {
     "allowlist": {
-      "all": true
+      "all": true,
+      "fs": {
+        "all": true
+      }
     },
     "bundle": {
       "active": true,

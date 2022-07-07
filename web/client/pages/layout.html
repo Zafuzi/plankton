@@ -1,0 +1,23 @@
+<template name="layout">
+	<head>
+		<title> Plankton </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<header class="appHeader">
+        <span class="appHeader__title gap-8">
+            <a href={{pathFor "home"}}>
+                <h1>Plankton</h1>
+            </a>
+        </span>
+        <nav>
+            <a href={{pathFor "about"}} class="{{active__ifRouteActive 'about'}}">About</a>
+        </nav>
+	</header>
+
+	<main>
+		{{> yield}}
+	</main>
+
+	<footer></footer>
+</template>

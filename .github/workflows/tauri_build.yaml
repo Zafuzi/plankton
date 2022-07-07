@@ -23,12 +23,8 @@ jobs:
     - name: install meteor
       run: npm i -g meteor 
 
-    - name: add meteor to path
-      run: export PATH=/home/runner/.meteor:$PATH
-
-    - name: install meteor packages
-      run: meteor npm install
-
+    #- name: install meteor packages
+    #run: cd web; /home/runner/.meteor/meteor npm install
 
     - name: install Rust stable
       uses: actions-rs/toolchain@v1

@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeBuildCommand": "cd meteor-build-client; npm i; cd ../web; meteor npm i; npm run build;",
+    "beforeBuildCommand": "",
     "beforeDevCommand": "",
     "devPath": "http://localhost:4000",
     "distDir": "../meteor-public"

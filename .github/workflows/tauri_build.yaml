@@ -20,10 +20,10 @@ jobs:
       with:
         node-version: 16
 
-    - run: npm i -g meteor
+    - name: install meteor
+      - run: npm i -g meteor
 
     - name: install meteor packages
-        shell: bash -l {0}
         run: meteor npm install
 
     - name: install Rust stable

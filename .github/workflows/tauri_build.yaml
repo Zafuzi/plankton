@@ -21,10 +21,10 @@ jobs:
         node-version: 16
 
     - name: install meteor
-        run: npm i -g meteor
+      run: npm i -g meteor
 
     - name: install meteor packages
-        run: meteor npm install
+      run: meteor npm install
 
     - name: install Rust stable
       uses: actions-rs/toolchain@v1

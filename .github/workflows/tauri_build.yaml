@@ -13,17 +13,19 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
-    - uses: actions/checkout@v1
-    - uses: zafuci/setup-meteor@v1
-      with:
-        meteor-release: '2.7.3'
-    - run: meteor npm install
-    - run: meteor npm test
     - uses: actions/checkout@v2
+
     - name: setup node
       uses: actions/setup-node@v1
       with:
         node-version: 16
+
+    - run: npm i -g meteor
+
+    - name: install meteor packages
+        shell: bash -l {0}
+        run: meteor npm install
+
     - name: install Rust stable
       uses: actions-rs/toolchain@v1
       with:

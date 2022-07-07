@@ -21,7 +21,7 @@ jobs:
         node-version: 16
 
     - name: install meteor
-      run: npm i -g meteor
+      run: npm i --location=global meteor
 
     - name: install meteor packages
       run: meteor npm install

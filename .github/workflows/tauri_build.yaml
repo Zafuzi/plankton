@@ -25,6 +25,8 @@ jobs:
 
     #- name: install meteor packages
     #run: cd web; /home/runner/.meteor/meteor npm install
+    - name: add meteor to the path
+      run: echo "${HOME}/.meteor" >> $GITHUB_PATH
 
     - name: install Rust stable
       uses: actions-rs/toolchain@v1

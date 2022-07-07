@@ -3,7 +3,8 @@
   "scripts": {
     "tauri": "tauri",
     "tauri_dev": "tauri dev",
-    "tauri_build": "tauri build"
+    "tauri_build": "tauri build",
+    "tauri_build_debug": "tauri build --debug"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.0.1"

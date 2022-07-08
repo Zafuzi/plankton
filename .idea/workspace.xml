@@ -24,28 +24,28 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "HbShouldOpenHtmlAsHb": "enabled",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "js.meteor.library.was.enabled": "true",
-    "js.meteor.project": "true",
-    "last_opened_file_path": "/home/zach/d/plankton",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;HbShouldOpenHtmlAsHb&quot;: &quot;enabled&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;js.meteor.library.was.enabled&quot;: &quot;true&quot;,
+    &quot;js.meteor.project&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/zach/d/plankton&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "js.meteor.library.cached": [
-      "/home/zach/d/plankton/web/.meteor"
+  &quot;keyToStringList&quot;: {
+    &quot;js.meteor.library.cached&quot;: [
+      &quot;/home/zach/d/plankton/web/.meteor&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -55,7 +55,7 @@
       <option name="presentableId" value="Default" />
       <updated>1657237329318</updated>
       <workItem from="1657237330586" duration="196000" />
-      <workItem from="1657238850628" duration="792000" />
+      <workItem from="1657238850628" duration="1040000" />
     </task>
     <task id="LOCAL-00001" summary="* update windows build to use local app data location of meteor">
       <created>1657238935305</created>

@@ -46,7 +46,7 @@ jobs:
 
     - name: meteor npm install for web 
       working-directory: ./web
-      run: %LOCALAPPDATA%\.meteor\meteor npm install;
+      run: %LOCALAPPDATA%/.meteor/meteor npm install;
       
     - name: build web 
       working-directory: ./web

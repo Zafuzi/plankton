@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="49728311-cf53-4968-9b3b-fa28165af63f" name="Changes" comment="" />
+    <list default="true" id="49728311-cf53-4968-9b3b-fa28165af63f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/tauri_build.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/tauri_build.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,7 +30,7 @@
     "WebServerToolWindowFactoryState": "false",
     "js.meteor.library.was.enabled": "true",
     "js.meteor.project": "true",
-    "last_opened_file_path": "/home/zach/d/plankton/web",
+    "last_opened_file_path": "/home/zach/d/plankton",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
@@ -47,6 +50,7 @@
       <option name="presentableId" value="Default" />
       <updated>1657237329318</updated>
       <workItem from="1657237330586" duration="196000" />
+      <workItem from="1657238850628" duration="55000" />
     </task>
     <servers />
   </component>

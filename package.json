@@ -1,6 +1,5 @@
 {
   "name": "plankton",
-  "version": "0.0.2",
   "scripts": {
     "tauri": "tauri",
     "tauri_dev": "tauri dev",

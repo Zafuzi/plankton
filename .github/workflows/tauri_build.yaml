@@ -9,7 +9,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-latest, ubuntu-latest, windows-latest]
+        platform: [windows-latest]
+        #platform: [macos-latest, ubuntu-latest, windows-latest]
 
     runs-on: ${{ matrix.platform }}
     steps:
@@ -47,8 +48,7 @@ jobs:
     - name: meteor npm install for web
       if: matrix.platform == 'windows-latest'
       working-directory: ./web
-      run: |
-        %LOCALAPPDATA%/.meteor/meteor npm install;
+      run: "C:/Users/runneradmin/AppData/Local/.meteor/meteor npm install"
         
     - name: meteor npm install for web
       if: matrix.platform != 'windows-latest'

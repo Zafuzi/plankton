@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="49728311-cf53-4968-9b3b-fa28165af63f" name="Changes" comment="">
+    <list default="true" id="49728311-cf53-4968-9b3b-fa28165af63f" name="Changes" comment="* update windows build to use local app data location of meteor">
       <change beforePath="$PROJECT_DIR$/.github/workflows/tauri_build.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/tauri_build.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +34,10 @@
     "js.meteor.project": "true",
     "last_opened_file_path": "/home/zach/d/plankton",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -50,8 +55,16 @@
       <option name="presentableId" value="Default" />
       <updated>1657237329318</updated>
       <workItem from="1657237330586" duration="196000" />
-      <workItem from="1657238850628" duration="55000" />
+      <workItem from="1657238850628" duration="792000" />
     </task>
+    <task id="LOCAL-00001" summary="* update windows build to use local app data location of meteor">
+      <created>1657238935305</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1657238935305</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -67,5 +80,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="* update windows build to use local app data location of meteor" />
+    <option name="LAST_COMMIT_MESSAGE" value="* update windows build to use local app data location of meteor" />
   </component>
 </project>

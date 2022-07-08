@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="49728311-cf53-4968-9b3b-fa28165af63f" name="Changes" comment="* update windows build to use local app data location of meteor">
       <change beforePath="$PROJECT_DIR$/.github/workflows/tauri_build.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/tauri_build.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +56,7 @@
       <option name="presentableId" value="Default" />
       <updated>1657237329318</updated>
       <workItem from="1657237330586" duration="196000" />
-      <workItem from="1657238850628" duration="1419000" />
+      <workItem from="1657238850628" duration="2059000" />
     </task>
     <task id="LOCAL-00001" summary="* update windows build to use local app data location of meteor">
       <created>1657238935305</created>

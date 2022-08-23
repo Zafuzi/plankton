@@ -12,6 +12,7 @@ const HERE = require("path").dirname(module.filename);
 const expressServer = require("rpc")("/api/", HERE + "/api/", {cors: true, dev: true});
 expressServer.use(require("serve-static")(HERE + "/static"));
 
+// todo move this to a let and function call so we can restart the server if it dies, like on macos when windows get moved to the appbar
 const server = expressServer.listen(0, function()
 {
 	console.log("listening to everything on port: " + server.address().port);

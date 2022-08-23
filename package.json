@@ -1,7 +1,7 @@
 {
   "name": "plankton",
   "productName": "plankton",
-  "version": "1.2.3",
+  "version": "1.3.0",
   "description": "A minimal editor for the Squids library",
   "main": "src/index.js",
   "scripts": {

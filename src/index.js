@@ -7,7 +7,16 @@ if(require('electron-squirrel-startup'))
 	app.quit();
 }
 
-const appServer = require("./site/appServer.js");
+const HERE = require("path").dirname(module.filename);
+
+const expressServer = require("rpc")("/api/", HERE + "/api/", {cors: true, dev: true});
+expressServer.use(require("serve-static")(HERE + "/static"));
+
+const server = expressServer.listen(0, function()
+{
+	console.log("listening to everything on port: " + server.address().port);
+	app.on('ready', createWindow);
+});
 
 const createWindow = () =>
 {
@@ -16,8 +25,10 @@ const createWindow = () =>
 		width: 800,
 		height: 600
 	});
+	
+	mainWindow.maximize();
 
-	mainWindow.loadURL("http://localhost:7891");
+	mainWindow.loadURL("http://localhost:" + server.address().port);
 
 	// Open the DevTools.
 	mainWindow.webContents.openDevTools();
@@ -26,7 +37,6 @@ const createWindow = () =>
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

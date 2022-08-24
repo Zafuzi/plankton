@@ -17,7 +17,6 @@ if(!datastore.gamesPath)
 	datastore.gamesPath = path.resolve(app.getPath("documents"), "PlanktonGames");
 	datastore.save();
 }
-const DEFAULT_GAMES_DIR = datastore.gamesPath;
 
 module.exports = async function(input, _okay, _fail)
 {
@@ -36,7 +35,7 @@ module.exports = async function(input, _okay, _fail)
 
 	if(!action)
 	{
-		fail("Action not provided");
+		fail({message: "Action not provided"});
 		return false;
 	}
 	
@@ -47,20 +46,7 @@ module.exports = async function(input, _okay, _fail)
 		return true;
 	}
 
-	if(action === "ping")
-	{
-		okay("pong");
-		return true;
-	}
-	
-	if(action === "createGame")
-	{
-
-	}
-
-
-	console.error("--- Action does not exist:\t\t", action);
+	//L.E("--- Action does not exist: " + action);
 	fail({message: "Action does not exist", action}, 501);
-	
 	return false;
 };

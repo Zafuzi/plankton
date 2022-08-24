@@ -154,7 +154,7 @@ class GameModule extends Module
 		}
 		
 		try{
-			let gameTemplatePath = path.resolve(__dirname, "gameTemplate");
+			let gameTemplatePath = path.resolve(__dirname, "../static/gameTemplate");
 			let gameCreated = await copyDir(gameTemplatePath, gamePath);
 			self.okay({message: "success", path: gamePath});
 		}

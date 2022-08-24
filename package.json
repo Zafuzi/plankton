@@ -21,7 +21,7 @@
     "forge": {
       "packagerConfig": {
         "executableName": "plankton",
-        "icon": "./Icon/icon.icns",
+        "icon": "./Icon/Icon",
         "asar": true
       },
       "makers": [
@@ -30,7 +30,7 @@
           "config": {
             "language": 1033,
             "manufacturer": "Zafuzi Industries",
-            "appIconPath": "Icon/Icon.icns"
+            "appIconPath": "Icon/Icon.ico"
           }
         },
         {

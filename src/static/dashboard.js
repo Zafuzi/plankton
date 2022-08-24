@@ -5,7 +5,7 @@ let homeQueue = sleepless.runq();
 homeQueue.add(function(next)
 {
 	let r8_gamesPath = sleepless.rplc8("#gamesPath");
-	sleepless.rpc("/api/", {action: "getGamesPath"}, function(response)
+	sleepless.rpc("/api/", {prefix: "games", action: "getGamesPath"}, function(response)
 	{
 		if(!response.data?.path)
 		{
@@ -26,10 +26,12 @@ homeQueue.add(function(next)
 });
 
 // get games list
+// TODO add the ability to MANAGE the games (play, open folder in filesystem, and delete)
+// TODO clone the default game template when creating
 homeQueue.add(function(next)
 {
 	let r8_gamesList = sleepless.rplc8("#gamesList");
-	sleepless.rpc("/api/", {action: "getAllGames"}, function(response)
+	sleepless.rpc("/api/", {prefix: "games", action: "getAllGames"}, function(response)
 	{
 		if(!response.data?.games)
 		{
@@ -45,6 +47,28 @@ homeQueue.add(function(next)
 					if(event.target.dataset?.name)
 					{
 						window.location.href = `/editor?gameName=${data.name}`;
+						return true;
+					}
+					
+					let action = event.target.dataset?.action;
+					if(action === "playGame")
+					{
+						
+					}
+					if(action === "openGameFolder")
+					{
+						rpc({prefix: "games", action: "openGameFolder", folder: data.path});
+					}
+					if(action === "deleteGame")
+					{
+						let ok = confirm("Are you sure you want to delete this game? This will delete the files on your filesystem.");
+						if(ok)
+						{
+							rpc({prefix: "games", action: "deleteGame", folder: data.path}, function()
+							{
+								window.location.reload();
+							});
+						}
 					}
 				});
 			});
@@ -60,12 +84,10 @@ homeQueue.add(function(next)
 // setup changing the games path
 homeQueue.add(function(next)
 {
-	let changeGamesPathButton = sleepless.QS1("#changeGamesPath");
-	
-	changeGamesPathButton?.addEventListener("submit", function(event)
+	listen("#changeGamesPath", "submit", function(event)
 	{
 		event.preventDefault();
-		sleepless.rpc("/api/", {action: "changeGamesPath"}, function()
+		sleepless.rpc("/api/", {prefix: "games", action: "changeGamesPath"}, function()
 		{
 			window.location.reload();
 		}, function(error, data)
@@ -74,26 +96,30 @@ homeQueue.add(function(next)
 		});
 	});
 	
+	listen("#openGamesFolder", "click", function(event)
+	{
+		// stop the parent form from submitting
+		event.preventDefault();
+		
+		rpc({prefix: "games", action: "openAllGamesFolder"})
+	});
+	
 	next();
 	return true;
 });
 
 // setup creating a new "game"
-// TODO add the ability to MANAGE the games (play, open folder in filesystem, and delete)
-// TODO clone the default game template when creating
 homeQueue.add(function(next)
 {
-	let newGameForm = sleepless.QS1("#newGameForm");
 	let newGameFormError = sleepless.rplc8("#newGameFormError");
 	
-	newGameForm.addEventListener("submit", function(event)
+	listen("#newGameForm", "submit", function(event)
 	{
 		event.preventDefault();
 		
-		newGameFormError.update({error: ""});
+		newGameFormError.update();
 		
 		let newGameName = sleepless.QS1("#newGameName")?.value;
-			newGameName = newGameName.toId();
 			
 		if(!newGameName)
 		{
@@ -101,18 +127,12 @@ homeQueue.add(function(next)
 			return false;
 		}
 		
-		sleepless.rpc("/api/", {action: "createGame", newGameName}, function(response)
+		sleepless.rpc("/api/", {prefix: "games", action: "createGame", newGameName}, function(response)
 		{
-			if(response?.data?.error)
-			{
-				newGameFormError.update({error: sleepless.o2j(response.data.error)});
-				return false;
-			}
-			
 			window.location.reload();
 		}, function(error)
 		{
-			newGameFormError.update({error: sleepless.o2j(error)});
+			newGameFormError.update({error: error.data.message});
 			console.error(error);
 		});
 	});

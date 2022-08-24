@@ -30,7 +30,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Generate config.json
-        run: echo "{\"BUILD_ENVIRONMENT\":\"staging\"}" | Out-File -FilePath "$env:GITHUB_WORKSPACE\config.json" -Encoding utf8
+        run: echo "{\"BUILD_ENVIRONMENT\":\"staging\"}" > "$env:GITHUB_WORKSPACE\config.json" -Encoding utf8
 
       - name: build
         run: npm run package
@@ -60,7 +60,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Generate config.json
-        run: echo "{\"BUILD_ENVIRONMENT\":\"staging\"}" | Out-File -FilePath "$env:GITHUB_WORKSPACE\config.json" -Encoding utf8
+        run: echo "{\"BUILD_ENVIRONMENT\":\"staging\"}" > "$env:GITHUB_WORKSPACE\config.json" -Encoding utf8
 
       - name: build
         run: npm run package

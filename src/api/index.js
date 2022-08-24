@@ -54,6 +54,8 @@ const run = function(prefix, _input, _datastore, _okay, _fail)
 	const Module = require("./rpc_" + prefix + ".js");
 	const prefixModule = new Module(_input, _datastore, _okay, _fail);
 	
+	L.V(` prefix: ${prefix} | action: ${_input.action}`);
+	
 	if(prefixModule[_input.action] instanceof Function)
 	{
 		prefixModule[_input.action]();

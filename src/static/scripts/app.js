@@ -16,7 +16,7 @@ const isActiveRoute = function(route)
 header.innerHTML = `
 	<nav>
 		<a class="${isActiveRoute("/")}" href="/">Dashboard</a>
-		<a className="${isActiveRoute("/editor") ? " active" : " hid"}" href="/editor">Editor</a>
+		<a class="${isActiveRoute("/editor") ? " active" : " hid"}" href="/editor">Editor</a>
 		<a class="${isActiveRoute("/help")}" href="/help">Help</a>
 	</nav>
 `;

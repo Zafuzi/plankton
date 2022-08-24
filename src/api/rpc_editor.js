@@ -4,6 +4,7 @@ const Module = require("./rpc_module");
 const fs = require("fs");
 const path = require("path");
 const sleepless = require("sleepless");
+const {copyDir} = require("./fs_extra");
 const L = sleepless.L.mkLog("--- Editor\t\t")(5);
 
 class EditorMethods extends Module
@@ -14,11 +15,11 @@ class EditorMethods extends Module
 		super(_input, _datastore, _okay, _fail);
 	}
 	
-	getGame()
+	async getGame()
 	{
 		let self = this;
 		
-		L.I(sleepless.o2j(self.input));
+		L.V(sleepless.o2j(self.input));
 
 		const {folder} = self.input;
 		if(!folder)
@@ -27,25 +28,27 @@ class EditorMethods extends Module
 			return false;
 		}
 
-		fs.readdir(path.resolve(self.datastore.gamesPath, folder), function(error, files)
+		const gamePath = path.resolve(self.datastore.gamesPath, folder);
+
+		fs.rm(path.resolve(__dirname, "../static/tmp_currentGame"), {recursive: true, force: true}, async function(error)
 		{
 			if(error)
 			{
-				self.fail({message: "self.failed to read game directory", action: self.action, error, files});
+				self.fail({message: "Failed to load game", error, action: self.action});
 				return false;
 			}
-
-			L.I(sleepless.o2j(files));
-			let filesList = [];
-			files.forEach(function(game)
+			
+			// todo copy game to tmp and return path
+			try{
+				await copyDir(gamePath, path.resolve(__dirname, "../static/tmp_currentGame"));
+				self.okay({path: gamePath});
+				return true;
+			}
+			catch(e)
 			{
-				filesList.push({
-					name: game,
-					path: path.resolve(self.datastore.gamesPath + "/" + game)
-				})
-			});
-			self.okay({filesList});
-			return true;
+				self.fail({message: "Failed to copy game to local tmp", error: e, action: self.action});
+				return false;
+			}
 		});
 
 		return true;

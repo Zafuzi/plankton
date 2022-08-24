@@ -1,6 +1,5 @@
 delete require.cache[module.filename];
 const sleepless = require("sleepless");
-const logger = require("logger");
 
 class Module {
 	action = "";

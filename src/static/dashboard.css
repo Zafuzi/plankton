@@ -10,6 +10,24 @@
 	max-height: calc(100vh - 100px);
 }
 
+#newGameForm {
+	position: relative;
+}
+
+#newGameFormError {
+	position: absolute;
+	bottom: -100%;
+	left: 0;
+	width: 100%;
+	
+	background-color: var(--assertive);
+	color: var(--lighter);
+	
+	padding: 8px;
+	
+	transform: translate3d(0, 100%, 0);
+}
+
 .gamesList {
 	padding: 0;
 	margin: 0;

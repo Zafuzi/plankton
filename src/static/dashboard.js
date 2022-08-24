@@ -117,7 +117,7 @@ homeQueue.add(function(next)
 	{
 		event.preventDefault();
 		
-		newGameFormError.update({error: ""});
+		newGameFormError.update();
 		
 		let newGameName = sleepless.QS1("#newGameName")?.value;
 			
@@ -129,16 +129,10 @@ homeQueue.add(function(next)
 		
 		sleepless.rpc("/api/", {prefix: "games", action: "createGame", newGameName}, function(response)
 		{
-			if(response?.data?.error)
-			{
-				newGameFormError.update({error: sleepless.o2j(response.data.error)});
-				return false;
-			}
-			
 			window.location.reload();
 		}, function(error)
 		{
-			newGameFormError.update({error: sleepless.o2j(error)});
+			newGameFormError.update({error: error.data.message});
 			console.error(error);
 		});
 	});

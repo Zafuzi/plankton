@@ -6,6 +6,7 @@ const Module = require("./rpc_module");
 const fs = require("fs");
 const path = require("path");
 const sleepless = require("sleepless");
+const {copyDir} = require("./fs_extra");
 
 const L = sleepless.L.mkLog("--- Games\t\t")(3);
 
@@ -19,7 +20,7 @@ class GameModule extends Module
 	{
 		let self = this;
 
-		L.I(self.datastore.gamesPath);
+		L.V(self.datastore.gamesPath);
 		self.okay({ path: self.datastore.gamesPath });
 		return true;
 	}
@@ -36,7 +37,7 @@ class GameModule extends Module
 				return false;
 			}
 
-			L.I(sleepless.o2j(games));
+			L.V(sleepless.o2j(games));
 			let gamesList = [];
 			games.forEach(function(game)
 			{
@@ -64,7 +65,7 @@ class GameModule extends Module
 		const {shell} = require('electron');
 
 		//shell.showItemInFolder(folder);
-		L.I(folder);
+		L.V(folder);
 		await shell.openPath(folder);
 
 		self.okay({message: "success"});
@@ -87,7 +88,7 @@ class GameModule extends Module
 		let self = this;
 		
 		let folder = await dialog.showOpenDialog({ properties: ['openDirectory'] });
-		L.I(folder);
+		L.V(folder);
 		if(!folder.canceled)
 		{
 			self.datastore.gamesPath = folder.filePaths[0];
@@ -117,7 +118,7 @@ class GameModule extends Module
 			return false;
 		}
 
-		fs.rmdir(folder, {recursive: true}, function(error, result)
+		fs.rm(folder, {recursive: true, force: true}, function(error, result)
 		{
 			if(error)
 			{
@@ -132,7 +133,7 @@ class GameModule extends Module
 		return true;
 	}
 
-	createGame()
+	async createGame()
 	{
 		let self = this;
 
@@ -145,19 +146,23 @@ class GameModule extends Module
 		}
 
 		let gamePath = path.resolve(self.datastore.gamesPath + "/" + newGameName.toId());
-		fs.mkdir(gamePath, function(error, result)
+			
+		if(fs.existsSync(gamePath))
 		{
-			if(error)
-			{
-				self.fail({message: "self.failed to create game", error, action: self.action, result});
-				return false;
-			}
-
-			self.okay({message: "success"});
-			return true;
-		});
-
-		return true;
+			self.fail({message: "Path already exists!", action: self.action});
+			return false;
+		}
+		
+		try{
+			let gameTemplatePath = path.resolve(__dirname, "gameTemplate");
+			let gameCreated = await copyDir(gameTemplatePath, gamePath);
+			self.okay({message: "success", path: gamePath});
+		}
+		catch(e)
+		{
+			self.fail({message: "Failed to copy the gameTemplate", action: self.action, error: e});
+			return false;
+		}
 	}
 	
 }

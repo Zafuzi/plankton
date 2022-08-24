@@ -34,14 +34,12 @@ const expressServer = require("rpc")("/api/", HERE + "/api/", {cors: true, dev: 
 expressServer.use(require("serve-static")(HERE + "/static"));
 expressServer.use((req, res, next) =>
 {
-	res.set({
-		"Access-Control-Allow-Origin": "*",
-		"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-		"Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
-		"Content-Security-Policy": "default-src 'self'",
-		"X-Content-Security-Policy": "default-src 'self'",
-		"X-WebKit-CSP": "default-src 'self'"
-	});
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
+	res.setHeader("Content-Security-Policy", "default-src '*'");
+	res.setHeader("X-Content-Security-Policy", "default-src '*'");
+	res.setHeader("X-WebKit-CSP", "default-src '*'");
 	next();
 });
 

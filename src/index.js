@@ -3,11 +3,11 @@ const path = require('path');
 const fs = require("fs");
 
 const DS = require("ds").DS;
-const datastore = new DS(path.resolve(process.env.USERPROFILE + "/.planktonConfig.json"));
+const datastore = new DS(path.resolve(app.getPath("appData"), ".plankton.config.json"));
 
 if(!datastore.gamesPath)
 {
-	datastore.gamesPath = path.resolve(process.env.USERPROFILE + "\\Documents\\PlanktonGames");
+	datastore.gamesPath = path.resolve(app.getPath("documents"), "PlanktonGames");
 	datastore.save();
 }
 const DEFAULT_GAMES_DIR = datastore.gamesPath;

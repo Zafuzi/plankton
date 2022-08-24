@@ -8,12 +8,14 @@
 	--dark: hsl(0, 0%, 12%);
 	--darker: hsl(0, 0%, 2%);
 	--darkest: hsl(0, 0%, 0%);
-	
-	--positive: #0074C7;
-	--positive-darker: #004F87;
-	--positive-darker-x2: #002A47;
-	--deep-dark: #001524;
-	--subtle-light: #F8F8F8;
+
+	--positive-lightest: hsl(208, 100%, 95%);
+	--positive-lighter: hsl(208, 100%, 88%);
+	--positive-light: hsl(208, 100%, 66%);
+	--positive: hsl(208, 100%, 39%);
+	--positive-dark: hsl(208, 100%, 22%);
+	--positive-darker: hsl(208, 100%, 12%);
+	--positive-darkest: hsl(208, 100%, 5%);
 
 	--calm: #0099ff;
 
@@ -26,9 +28,16 @@
 	--breakpoiint-medium: 640px;
 	--breakpoiint-small: 480px;
 
-	--radius-1: 2px;
-	--radius-2: 4px;
-	--radius-3: 6px;
-	--radius-4: 8px;
-	--radius-5: 12px;
+	--radius-2: 2px;
+	--radius-4: 4px;
+	--radius-6: 6px;
+	--radius-8: 8px;
+	--radius-12: 12px;
+	--radius-16: 16px;
+	--radius-24: 24px;
+	--radius-48: 48px;
+	--radius-50-percent: 50%;
+	--radius-100-percent: 100%;
+	
+	--input-radius: var(--radius-16);
 }

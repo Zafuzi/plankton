@@ -1,0 +1,49 @@
+.dashboard {
+	padding: 8px;
+	max-width: 1200px;
+	margin: auto;
+	
+	display: flex;
+	flex-flow: column;
+	
+	gap: 24px;
+}
+
+.gamesList {
+	padding: 0;
+	margin: 0;
+}
+
+.game {
+	cursor: pointer;
+	padding: 0 24px 0 0;
+	
+	gap: 48px;
+	
+	border-radius: var(--radius-8);
+}
+.game a {
+	padding: 24px;
+	color: var(--lighter);
+	text-decoration: none;
+	width: 100%;
+}
+.game p {
+	font-size: 14pt;
+	margin: 0;
+	font-weight: 500;
+}
+.game small {
+	color: var(--neutral-dark);
+}
+.game:hover {
+	background-color: hsla(0, 0%, 80%, 5%);
+}
+
+.gameActions {
+}
+.gameActions .icon {
+	font-size: 32px;
+	height: 44px;
+	line-height: 44px;
+}

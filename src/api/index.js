@@ -129,14 +129,49 @@ module.exports = async function(input, _okay, _fail)
 		
 		return false;
 	}
+	
+	if(action === "getGame")
+	{
+		const {folder} = input;
+		if(!folder)
+		{
+			fail({message: "No game folder provided"});
+			return false;
+		}
+		
+		try
+		{
+			fs.readdir(path.resolve(datastore.gamesPath, folder), function(error, files)
+			{
+				if(error)
+				{
+					fail({message: "Failed to read game directory", action, error, files});
+					return false;
+				}
+
+				console.log(files);
+				let filesList = [];
+				files.forEach(function(game)
+				{
+					filesList.push({
+						name: game,
+						path: path.resolve(datastore.gamesPath + "/" + game)
+					})
+				});
+				okay({filesList});
+				return true;
+			});
+			return true;
+		}
+		catch(e)
+		{
+			console.error(e);
+		}
+		
+	}
 
 	console.error("--- Action does not exist:\t\t", action);
 	fail({message: "Action does not exist", action}, 501);
 	
 	return false;
-};
-
-const check = function(object, type)
-{
-	return typeof object === type;
 };

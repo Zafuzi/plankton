@@ -1,23 +1,37 @@
 :root {
-	--nav-color-bg: var(--positive);
-	--nav-color-fg: var(--lightest);
+	--nav-color-bg: var(--dark);
+	--nav-color-fg: var(--neutral-dark);
+
+	--nav-color-bg-active: var(--lighter);
+	--nav-color-fg-active: var(--dark);
 }
 
 nav {
-	border-bottom: 2px solid var(--nav-color-bg);
+	max-width: 1200px;
+	margin: 24px auto 24px auto;
+	padding-bottom: 24px;
+	border-bottom: 2px solid var(--nav-color-fg);
+	border-radius: var(--radius-2);
+	
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	
+	gap: 24px;
+	
 }
 
 nav a {
+	padding: 8px 48px;
 	font-size: 14pt;
 	font-weight: bold;
-	
-	padding: 8px;
-	
-	color: var(--nav-color-bg);
+	color: var(--nav-color-fg);
 	text-decoration: none;
+	
+	border-radius: var(--radius-48);
 }
 
 nav a.active {
-	color: var(--nav-color-fg);
-	background-color: var(--nav-color-bg);
+	color: var(--nav-color-fg-active);
+	background-color: var(--nav-color-bg-active);
 }

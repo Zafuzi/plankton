@@ -4,42 +4,45 @@
 		<title>Plankton - Dashboard</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="styles/app.css">
-		<link rel="stylesheet" href="home.css">
+		<link rel="stylesheet" href="dashboard.css">
 	</head>
 	<body>
-		<main>
-			<h1>Dashboard</h1>
-			
-			<section class="flex flow-column gap-8 manageGames">
-				<form class="flex flow-row align-center gap-8" id="changeGamesPath">
+		<main class="dashboard">
+			<section class="flex flow-row align-center justify-space-between gap-8">
+				<form class="flex flow-row align-center gap-24" id="changeGamesPath">
 					<block>
-						<p>
-							Games Path:
-							<b id="gamesPath">__path__</b>
-						</p>
+						<p> Games Path: <b id="gamesPath">__path__</b> </p>
 					</block>
 					<button class="button">Change Path</button>
 				</form>
 				
 				<form class="flex flow-column gap-8" id="newGameForm">
 					<span id="newGameFormError">__error__</span>
-					<label for="newGameName">New game name</label>
 					<div class="flex flow-row align-center gap-8">
 						<input type="text" id="newGameName" placeholder="New game name" required>
-						<button class="button" type="submit">Create</button>
+						<button class="button button-positive" type="submit">Create</button>
 					</div>
 				</form>
 			</section>
 			
-			<hr/>
 			<section>
 				<h2>Your Games</h2>
-				<article class="padding">
+				<article>
 					<ul class="flex flow-column gap-8 gamesList">
 						<block>
-							<li class="game" id="gamesList">
-								<p>__name__ </p>
-								<small>__path__</small>
+							<li class="flex flow-row align-center justify-space-between game" id="gamesList">
+								<a href="/editor/?folder=__name__">
+									<span>
+										<p>__name__ </p>
+										<small>__path__</small>
+									</span>
+								</a>
+									
+								<div class="flex flow-row align-center gap-24 gameActions">
+									<i class="icon ion-play neutral-dark hover-positive"></i>
+									<i class="icon ion-folder neutral hover-positive"></i>
+									<i class="icon ion-close neutral hover-assertive"></i>
+								</div>
 							</li>
 						</block>
 					</ul>
@@ -49,7 +52,7 @@
 
 		<script src="scripts/sleepless.js"></script>
 		<script src="scripts/app.js"></script>
-		<script src="home.js"></script>
+		<script src="dashboard.js"></script>
 	</body>
 </html>
 

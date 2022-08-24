@@ -12,10 +12,11 @@ const isActiveRoute = function(route)
 	
 	return "";
 }
+
 header.innerHTML = `
-	<nav class="flex flow-row align-center gap-16">
+	<nav>
 		<a class="${isActiveRoute("/")}" href="/">Dashboard</a>
-		<a class="${isActiveRoute("/editor")}" href="/editor">Editor</a>
+		<a class="${isActiveRoute("/editor") ? "active" : "hid"}" href="/editor">Editor</a>
 		<a class="${isActiveRoute("/help")}" href="/help">Help</a>
 	</nav>
 `;

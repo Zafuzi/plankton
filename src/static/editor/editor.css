@@ -1,3 +1,4 @@
-h1 {
-	color: red;
+.editor {
+	max-width: 1200px;
+	margin: 0 auto;
 }

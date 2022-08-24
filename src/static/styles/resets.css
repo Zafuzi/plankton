@@ -16,12 +16,12 @@ body, html {
 	line-height: 1.4;
 	font-weight: normal;
 
-	background-color: var(--lighter);
-	color: var(--darker);
+	background-color: var(--dark);
+	color: var(--lighter);
 }
 
 h1, h2, h3, h4, h5, h6 {
-	margin: 8px;
+	margin: 8px 0;
 }
 
 h1 { font-size: 28pt; }
@@ -29,6 +29,11 @@ h2 { font-size: 22pt; }
 h3 { font-size: 18pt; }
 h4 { font-size: 14pt; }
 h5 { font-size: 13pt; }
+
+hr {
+	border: 2px solid var(--neutral);
+	border-radius: var(--radius-2);
+}
 
 figure {
 	display: flex;
@@ -58,9 +63,11 @@ input[type=checkbox],
 input[type=password],
 input[type=username],
 input[type=email] {
-	padding: 5px 10px;
-	border: 1px solid var(--dark);
-	border-radius: var(--radius-1);
+	padding: 8px 16px;
+	background-color: var(--dark);
+	border: 2px solid var(--neutral);
+	border-radius: var(--input-radius);
+	color: var(--lightest);
 }
 
 footer {
@@ -110,9 +117,19 @@ footer {
 .light { color: var(--light); }
 .dark { color: var(--dark); }
 .balanced { color: var(--balanced); }
-.deep-dark { color: var(--deep-dark); }
 .energized { color: var(--energized); }
 .assertive { color: var(--assertive); }
+.neutral { color: var(--neutral); }
+.neutral-dark { color: var(--neutral-dark); }
 .positive { color: var(--positive); }
+
+.hover-light:hover { color: var(--light); }
+.hover-dark:hover { color: var(--dark); }
+.hover-balanced:hover { color: var(--balanced); }
+.hover-energized:hover { color: var(--energized); }
+.hover-assertive:hover { color: var(--assertive); }
+.hover-neutral:hover { color: var(--neutral); }
+.hover-neutral-dark:hover { color: var(--neutral-dark); }
+.hover-positive:hover { color: var(--positive); }
 
 .hid { display: none !important; }

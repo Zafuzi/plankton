@@ -84,7 +84,7 @@ module.exports = async function(input, _okay, _fail)
 			return false;
 		}
 		
-		fs.mkdir(datastore.gamesPath + "/" + newGameName.toId(), function(error, result)
+		fs.mkdir(path.resolve(datastore.gamesPath + "/" + newGameName), function(error, result)
 		{
 			if(error)
 			{
@@ -197,6 +197,30 @@ module.exports = async function(input, _okay, _fail)
 		await shell.openPath(folder);
 
 		okay({message: "success"});
+		return true;
+	}
+	
+	if(action === "deleteGame")
+	{
+		const {folder} = input;
+		if(!folder)
+		{
+			fail({message: "No game folder provided"});
+			return false;
+		}
+		
+		fs.rmdir(folder, {recursive: true}, function(error, result)
+		{
+			if(error)
+			{
+				fail({message: "Failed when deleting game", error, result, action});
+				return false;
+			}
+			
+			okay({message: "success"});
+			return true;
+		});
+		
 		return true;
 	}
 

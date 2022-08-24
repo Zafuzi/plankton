@@ -30,7 +30,7 @@ const okay = function(response)
 
 const fail = function(response)
 {
-	console.log(`${response.status} | ${response.message}`, response.error, response.data);
+	console.error(`${response.status} | ${response.message}`, response.error, response.data);
 }
 
 const rpc = function(data, _okay, _fail)

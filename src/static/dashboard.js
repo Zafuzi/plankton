@@ -61,7 +61,14 @@ homeQueue.add(function(next)
 					}
 					if(action === "deleteGame")
 					{
-
+						let ok = confirm("Are you sure you want to delete this game? This will delete the files on your filesystem.");
+						if(ok)
+						{
+							rpc({action: "deleteGame", folder: data.path}, function()
+							{
+								window.location.reload();
+							});
+						}
 					}
 				});
 			});
@@ -113,7 +120,6 @@ homeQueue.add(function(next)
 		newGameFormError.update({error: ""});
 		
 		let newGameName = sleepless.QS1("#newGameName")?.value;
-			newGameName = newGameName.toId();
 			
 		if(!newGameName)
 		{

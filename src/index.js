@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require("fs");
 
 const DS = require("ds").DS;
-const datastore = new DS(path.resolve(__dirname, "api/config.json"));
+const datastore = new DS(path.resolve(process.env.USERPROFILE + "/.planktonConfig.json"));
 
 if(!datastore.gamesPath)
 {

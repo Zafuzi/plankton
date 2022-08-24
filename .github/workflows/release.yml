@@ -7,8 +7,6 @@ on:
       - 'v*'
 
 jobs:
-  setup_yarn:
-
   publish_on_linux:
     runs-on: ubuntu-latest
     steps:

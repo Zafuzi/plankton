@@ -33,7 +33,17 @@ homeQueue.add(function(next)
 		}
 		else
 		{
-			r8_gamesList.update(response.data.games);
+			r8_gamesList.update(response.data.games, function(instance, data)
+			{
+				instance.addEventListener("click", function(event)
+				{
+					// debounce clicking on buttons
+					if(event.target.dataset?.name)
+					{
+						window.location.href = `/editor?gameName=${data.name}`;
+					}
+				});
+			});
 		}
 		next();
 	}, function()

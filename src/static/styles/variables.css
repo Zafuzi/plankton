@@ -1,0 +1,34 @@
+:root {
+	--lightest: hsl(0, 0%, 100%);
+	--lighter: hsl(0, 0%, 98%);
+	--light: hsl(0, 0%, 88%);
+	--neutral-light: hsl(0, 0%, 66%);
+	--neutral: hsl(0, 0%, 50%);
+	--neutral-dark: hsl(0, 0%, 44%);
+	--dark: hsl(0, 0%, 12%);
+	--darker: hsl(0, 0%, 2%);
+	--darkest: hsl(0, 0%, 0%);
+	
+	--positive: #0074C7;
+	--positive-darker: #004F87;
+	--positive-darker-x2: #002A47;
+	--deep-dark: #001524;
+	--subtle-light: #F8F8F8;
+
+	--calm: #0099ff;
+
+	--balanced: #008055;
+	--energized: #ffa900;
+	--assertive: #DD0033;
+	--juicy: #850053;
+
+	--breakpoint-large: 1020px;
+	--breakpoiint-medium: 640px;
+	--breakpoiint-small: 480px;
+
+	--radius-1: 2px;
+	--radius-2: 4px;
+	--radius-3: 6px;
+	--radius-4: 8px;
+	--radius-5: 12px;
+}

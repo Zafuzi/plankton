@@ -1,23 +1,23 @@
-let nav = null;
-const args = sleepless.getQueryData();
-args.route = "/" + window.location.pathname.split("/")[1];
+// globals can go here
+const queryData = sleepless.getQueryData();
+const currentRoute = "/" + window.location.pathname.split("/")[1];
 
-document.addEventListener("DOMContentLoaded", function()
+let header = document.createElement("header")
+const isActiveRoute = function(route)
 {
-	nav = document.querySelector("nav");
-	setActiveNav();
-});
-
-function setActiveNav()
-{
-	if(nav)
+	if(currentRoute === route)
 	{
-		const activeLink = nav.querySelector(`a[data-route="${args.route}"]`);
-		if(activeLink)
-		{
-			activeLink.classList.add("active");
-		}
+		return "active";
 	}
-
-	console.log("Query Args: %o", args);
+	
+	return "";
 }
+header.innerHTML = `
+	<nav class="flex flow-row align-center gap-16">
+		<a class="${isActiveRoute("/")}" href="/">Dashboard</a>
+		<a class="${isActiveRoute("/editor")}" href="/editor">Editor</a>
+		<a class="${isActiveRoute("/help")}" href="/help">Help</a>
+	</nav>
+`;
+
+document.body.prepend(header);

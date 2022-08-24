@@ -1,0 +1,23 @@
+:root {
+	--nav-color-bg: var(--positive);
+	--nav-color-fg: var(--lightest);
+}
+
+nav {
+	border-bottom: 2px solid var(--nav-color-bg);
+}
+
+nav a {
+	font-size: 14pt;
+	font-weight: bold;
+	
+	padding: 8px;
+	
+	color: var(--nav-color-bg);
+	text-decoration: none;
+}
+
+nav a.active {
+	color: var(--nav-color-fg);
+	background-color: var(--nav-color-bg);
+}

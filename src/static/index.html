@@ -1,32 +1,55 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<title>Plankton</title>
+		<title>Plankton - Dashboard</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="styles/app.css">
+		<link rel="stylesheet" href="styles/home/home.css">
 	</head>
 	<body>
-
-		<header class="max-width-1200">
-			<nav>
-				<a data-route="/" href="/">Home</a>
-				<div>
-					<a data-route="/about" href="/about">About</a>
-				</div>
-			</nav>
-		</header>
-
-		<main class="max-width-1200">
-			<h1>Welcome</h1>
+		<main>
+			<h1>Dashboard</h1>
+			
+			<section class="flex flow-column gap-8 manageGames">
+				<form class="flex flow-row align-center gap-8" id="changeGamesPath">
+					<block>
+						<p>
+							Games Path:
+							<b id="gamesPath">__path__</b>
+						</p>
+					</block>
+					<button class="button">Change Path</button>
+				</form>
+				
+				<form class="flex flow-column gap-8" id="newGameForm">
+					<span id="newGameFormError">__error__</span>
+					<label for="newGameName">New game name</label>
+					<div class="flex flow-row align-center gap-8">
+						<input type="text" id="newGameName" placeholder="New game name" required>
+						<button class="button" type="submit">Create</button>
+					</div>
+				</form>
+			</section>
+			
+			<hr/>
+			<section>
+				<h2>Your Games</h2>
+				<article class="padding">
+					<ul class="flex flow-column gap-8 gamesList">
+						<block>
+							<li class="game" id="gamesList">
+								<p>__name__ </p>
+								<small>__path__</small>
+							</li>
+						</block>
+					</ul>
+				</article>
+			</section>
 		</main>
-
-		<footer class="max-width-1200">
-			<hr>
-			<p> &copy; Zafuzi 2022 </p>
-		</footer>
 
 		<script src="scripts/sleepless.js"></script>
 		<script src="scripts/app.js"></script>
+		<script src="scripts/home/home.js"></script>
 	</body>
 </html>
 

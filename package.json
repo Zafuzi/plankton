@@ -59,6 +59,8 @@
     }
   },
   "dependencies": {
+    "codemirror": "^6.0.1",
+    "ds": "^1.4.2",
     "electron-squirrel-startup": "^1.0.0",
     "rpc": "^3.3.3",
     "serve-static": "^1.15.0",

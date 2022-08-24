@@ -23,12 +23,10 @@ const createWindow = () =>
 {
 	// Create the browser window.
 	const mainWindow = new BrowserWindow({
-		width: 800,
-		height: 600
+		width: 1600,
+		height: 900
 	});
 	
-	mainWindow.maximize();
-
 	mainWindow.loadURL("http://localhost:" + server.address().port);
 
 	// Open the DevTools.

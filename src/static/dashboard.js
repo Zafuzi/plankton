@@ -5,7 +5,7 @@ let homeQueue = sleepless.runq();
 homeQueue.add(function(next)
 {
 	let r8_gamesPath = sleepless.rplc8("#gamesPath");
-	sleepless.rpc("/api/", {action: "getGamesPath"}, function(response)
+	sleepless.rpc("/api/", {prefix: "games", action: "getGamesPath"}, function(response)
 	{
 		if(!response.data?.path)
 		{
@@ -31,7 +31,7 @@ homeQueue.add(function(next)
 homeQueue.add(function(next)
 {
 	let r8_gamesList = sleepless.rplc8("#gamesList");
-	sleepless.rpc("/api/", {action: "getAllGames"}, function(response)
+	sleepless.rpc("/api/", {prefix: "games", action: "getAllGames"}, function(response)
 	{
 		if(!response.data?.games)
 		{
@@ -57,14 +57,14 @@ homeQueue.add(function(next)
 					}
 					if(action === "openGameFolder")
 					{
-						rpc({action: "openGameFolder", folder: data.path});
+						rpc({prefix: "games", action: "openGameFolder", folder: data.path});
 					}
 					if(action === "deleteGame")
 					{
 						let ok = confirm("Are you sure you want to delete this game? This will delete the files on your filesystem.");
 						if(ok)
 						{
-							rpc({action: "deleteGame", folder: data.path}, function()
+							rpc({prefix: "games", action: "deleteGame", folder: data.path}, function()
 							{
 								window.location.reload();
 							});
@@ -87,7 +87,7 @@ homeQueue.add(function(next)
 	listen("#changeGamesPath", "submit", function(event)
 	{
 		event.preventDefault();
-		sleepless.rpc("/api/", {action: "changeGamesPath"}, function()
+		sleepless.rpc("/api/", {prefix: "games", action: "changeGamesPath"}, function()
 		{
 			window.location.reload();
 		}, function(error, data)
@@ -101,7 +101,7 @@ homeQueue.add(function(next)
 		// stop the parent form from submitting
 		event.preventDefault();
 		
-		rpc({action: "openAllGamesFolder"})
+		rpc({prefix: "games", action: "openAllGamesFolder"})
 	});
 	
 	next();
@@ -127,7 +127,7 @@ homeQueue.add(function(next)
 			return false;
 		}
 		
-		sleepless.rpc("/api/", {action: "createGame", newGameName}, function(response)
+		sleepless.rpc("/api/", {prefix: "games", action: "createGame", newGameName}, function(response)
 		{
 			if(response?.data?.error)
 			{

@@ -39,14 +39,22 @@ jobs:
     env:
       WIX_PATH_CANDLE: "C:/Program Files (x86)/WiX Toolset v3.11/bin/candle.exe"
       WIX_PATH_LIGHT: "C:/Program Files (x86)/WiX Toolset v3.11/bin/light.exe"
+      
     steps:
     - uses: actions/checkout@v2       
     - uses: actions/setup-node@master
       with:
         node-version: 14
+        
+    - name: Update path for wix
+      run: |
+        echo "C:/Program Files (x86)/WiX Toolset v3.11/bin/candle.exe" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
+        echo "C:/Program Files (x86)/WiX Toolset v3.11/bin/light.exe" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
+        
     - name: install dependencies
       run: npm install
-    - name: publish
+      
+    - name: Build and publish
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npm run publish

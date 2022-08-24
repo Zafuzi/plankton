@@ -1,4 +1,4 @@
-const APP_VERSION = "v1.7.2 - Alpha";
+const APP_VERSION = "v1.8.0 - Bravo";
 const {app, BrowserWindow, session} = require('electron');
 const path = require('path');
 const fs = require("fs");
@@ -45,10 +45,9 @@ expressServer.use((req, res, next) =>
 	next();
 });
 
-// todo move this to a let and function call so we can restart the server if it dies, like on macos when windows get moved to the appbar
 const server = expressServer.listen(0, function()
 {
-	console.log("listening to everything on port: " + server.address().port);
+	console.log("listening to everything on: http://127.0.0.1:" + server.address().port);
 	app.on('ready', createWindow);
 });
 
@@ -65,7 +64,7 @@ app.on('web-contents-created', (event, contents) =>
 		webPreferences.nodeIntegration = false;
 
 		// Verify URL being loaded
-		if(!params.src.startsWith(`http://localhost:${server.address().port}`))
+		if(!params.src.startsWith(`http://127.0.0.1:${server.address().port}`))
 		{
 			event.preventDefault();
 		}
@@ -75,7 +74,7 @@ app.on('web-contents-created', (event, contents) =>
 	{
 		const parsedUrl = new URL(navigationUrl);
 
-		if(parsedUrl.origin !== `http://localhost:${server.address().port}`)
+		if(parsedUrl.origin !== `http://127.0.0.1:${server.address().port}`)
 		{
 			event.preventDefault();
 		}
@@ -83,10 +82,8 @@ app.on('web-contents-created', (event, contents) =>
 });
 
 let urlFilter = {
-	urls: [`http://localhost:${server.address().port}/*`]
+	urls: [`http://127.0.0.1:${server.address().port}/*`]
 }
-
-
 
 const createWindow = async function()
 {
@@ -108,12 +105,12 @@ const createWindow = async function()
 	});
 
 
-	await mainWindow.loadURL("http://localhost:" + server.address().port);
+	await mainWindow.loadURL("http://127.0.0.1:" + server.address().port);
 	mainWindow.setTitle(`Plankton - ${APP_VERSION}`);
 
 	mainWindow.webContents.session.setPermissionRequestHandler((webContents, permission, callback) =>
 	{
-		if(webContents.getURL() !== `http://localhost:${server.address().port}` && permission === 'openExternal')
+		if(webContents.getURL() !== `http://127.0.0.1:${server.address().port}` && permission === 'openExternal')
 		{
 			return callback(false);
 		}

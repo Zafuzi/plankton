@@ -5,7 +5,6 @@ const path = require("path");
 const fs = require("fs");
 const HERE = path.resolve(__dirname);
 const sleepless = require("sleepless");
-const games = require("./rpcGames");
 const L = sleepless.L.mkLog("--- api\t\t")(3);
 
 const DS = require("ds").DS;
@@ -39,14 +38,28 @@ module.exports = async function(input, _okay, _fail)
 		return false;
 	}
 	
-	if(prefix === "games")
+	if(prefix)
 	{
-		const games = require("./rpcGames.js");
-		await games.run(input, datastore, okay, fail);
+		run(prefix, input, datastore, okay, fail);
 		return true;
 	}
 
-	//L.E("--- Action does not exist: " + action);
+	L.E("--- Action does not exist: " + action);
 	fail({message: "Action does not exist", action}, 501);
+	return false;
+};
+
+const run = function(prefix, _input, _datastore, _okay, _fail)
+{
+	const Module = require("./rpc_" + prefix + ".js");
+	const prefixModule = new Module(_input, _datastore, _okay, _fail);
+	
+	if(prefixModule[_input.action] instanceof Function)
+	{
+		prefixModule[_input.action]();
+		return true;
+	}
+
+	_fail({message: "Method not found", action: _input.action});
 	return false;
 };

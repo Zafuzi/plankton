@@ -5,7 +5,7 @@ let r8_gameName = sleepless.rplc8("#gameName");
 		name: queryData?.folder || ""
 	});
 	
-sleepless.rpc("/api/", {prefix: "games", action: "getGame", folder: queryData.folder}, function(response)
+sleepless.rpc("/api/", {prefix: "editor", action: "getGame", folder: queryData.folder}, function(response)
 {
 	console.log(response);
 }, console.error);

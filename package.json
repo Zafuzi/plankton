@@ -1,6 +1,6 @@
 {
   "name": "plankton",
-  "productName": "plankton",
+  "productName": "Plankton",
   "version": "1.4.0",
   "description": "A minimal editor for the Squids library",
   "main": "src/index.js",
@@ -20,7 +20,8 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "executableName": "plankton"
+        "executableName": "plankton",
+        "icon": "./Icon/icon.icns"
       },
       "makers": [
         {

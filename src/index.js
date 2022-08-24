@@ -21,10 +21,13 @@ const server = expressServer.listen(0, function()
 
 const createWindow = () =>
 {
+	const iconPath = process.platform !== 'darwin' ? 'Icon/Icon.ico' : 'Icon/Icon.icns';
+	
 	// Create the browser window.
 	const mainWindow = new BrowserWindow({
 		width: 1600,
-		height: 900
+		height: 900,
+		icon: path.resolve(__dirname, "./Icon/Icon.icns")
 	});
 	
 	mainWindow.loadURL("http://localhost:" + server.address().port);

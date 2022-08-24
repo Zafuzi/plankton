@@ -84,7 +84,8 @@ module.exports = async function(input, _okay, _fail)
 			return false;
 		}
 		
-		fs.mkdir(path.resolve(datastore.gamesPath + "/" + newGameName), function(error, result)
+		let gamePath = path.normalize(datastore.gamesPath + "/" + newGameName.toId());
+		fs.mkdir(gamePath, function(error, result)
 		{
 			if(error)
 			{
@@ -117,6 +118,7 @@ module.exports = async function(input, _okay, _fail)
 				{
 					gamesList.push({
 						name: game,
+						label: game.toLabel(),
 						path: path.resolve(datastore.gamesPath + "/" + game)
 					})
 				});

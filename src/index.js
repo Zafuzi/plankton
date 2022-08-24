@@ -27,13 +27,6 @@ fs.readdir(datastore.gamesPath, function(error, result)
 	}
 });
 
-
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if(require('electron-squirrel-startup'))
-{ // eslint-disable-line global-require
-	app.quit();
-}
-
 const HERE = require("path").dirname(module.filename);
 
 const expressServer = require("rpc")("/api/", HERE + "/api/", {cors: true, dev: true});

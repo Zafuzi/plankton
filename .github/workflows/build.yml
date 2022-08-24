@@ -1,0 +1,53 @@
+name: Build on push to main
+on:
+  push:
+    branches:
+      - main
+      - 
+jobs:
+
+  build_on_linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@master
+        with:
+          node-version: 14
+      - name: install dependencies
+        run: npm install
+        
+      - name: build
+        run: npm run package
+
+  build_on_mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@master
+        with:
+          node-version: 14
+          
+      - name: install dependencies
+        run: npm install
+        
+      - name: build
+        run: npm run package
+  
+  build_on_win:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@master
+        with:
+          node-version: 14
+
+      - name: Update path for wix
+        run: |
+          echo "C:/Program Files (x86)/WiX Toolset v3.11/bin/candle.exe" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
+          echo "C:/Program Files (x86)/WiX Toolset v3.11/bin/light.exe" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
+
+      - name: install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run package

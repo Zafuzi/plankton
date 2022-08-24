@@ -1,17 +1,18 @@
 delete require.cache[module.filename];	// always reload
 
-const { dialog } = require('electron');
+const { app, dialog } = require('electron');
 const path = require("path");
 const fs = require("fs");
 const HERE = path.resolve(__dirname);
 const sleepless = require("sleepless");
 
 const DS = require("ds").DS;
-const datastore = new DS(path.resolve(process.env.USERPROFILE + "/.planktonConfig.json"));
+const configPath = path.resolve(app.getPath("appData"), ".planktonConfig.json");
+const datastore = new DS(configPath);
 
 if(!datastore.gamesPath)
 {
-	datastore.gamesPath = path.resolve(process.env.USERPROFILE + "\\Documents\\PlanktonGames");
+	datastore.gamesPath = path.resolve(app.getPath("documents"), "PlanktonGames");
 	datastore.save();
 }
 const DEFAULT_GAMES_DIR = datastore.gamesPath;
@@ -45,6 +46,7 @@ module.exports = async function(input, _okay, _fail)
 	if(action === "getGamesPath")
 	{
 		okay({
+			configPath,
 			path: DEFAULT_GAMES_DIR
 		});
 		return true;

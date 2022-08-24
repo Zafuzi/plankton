@@ -1,6 +1,7 @@
 
 let homeQueue = sleepless.runq();
 
+// get games path
 homeQueue.add(function(next)
 {
 	let r8_gamesPath = sleepless.rplc8("#gamesPath");
@@ -14,6 +15,8 @@ homeQueue.add(function(next)
 		{
 			r8_gamesPath.update({path: response.data?.path || ""});
 		}
+		
+		console.log("Config path: ", response.data.configPath);
 		next();
 	}, function()
 	{
@@ -22,6 +25,7 @@ homeQueue.add(function(next)
 	});
 });
 
+// get games list
 homeQueue.add(function(next)
 {
 	let r8_gamesList = sleepless.rplc8("#gamesList");
@@ -53,6 +57,7 @@ homeQueue.add(function(next)
 	});
 });
 
+// setup changing the games path
 homeQueue.add(function(next)
 {
 	let changeGamesPathButton = sleepless.QS1("#changeGamesPath");
@@ -73,6 +78,9 @@ homeQueue.add(function(next)
 	return true;
 });
 
+// setup creating a new "game"
+// TODO add the ability to MANAGE the games (play, open folder in filesystem, and delete)
+// TODO clone the default game template when creating
 homeQueue.add(function(next)
 {
 	let newGameForm = sleepless.QS1("#newGameForm");
@@ -115,5 +123,5 @@ homeQueue.add(function(next)
 
 homeQueue.run(function()
 {
-	console.log("Home is ready");
+	console.log("Welcome home dear...");
 });

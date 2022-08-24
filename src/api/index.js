@@ -7,7 +7,7 @@ const HERE = path.resolve(__dirname);
 const sleepless = require("sleepless");
 
 const DS = require("ds").DS;
-const configPath = path.resolve(app.getPath("appData"), ".planktonConfig.json");
+const configPath = path.resolve(app.getPath("appData"), ".plankton.config.json");
 const datastore = new DS(configPath);
 
 if(!datastore.gamesPath)

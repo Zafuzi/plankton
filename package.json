@@ -21,20 +21,23 @@
     "forge": {
       "packagerConfig": {
         "executableName": "plankton",
-        "icon": "./Icon/icon.icns"
+        "icon": "./Icon/icon.icns",
+        "asar": true
       },
       "makers": [
         {
-          "name": "@electron-forge/maker-squirrel",
+          "name": "@electron-forge/maker-wix",
           "config": {
-            "name": "plankton"
+            "language": 1033,
+            "manufacturer": "Zafuzi Industries"
           }
         },
         {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
+          "name": "@electron-forge/maker-dmg",
+          "config": {
+            "background": "./assets/dmg-background.png",
+            "format": "ULFO"
+          }
         },
         {
           "name": "@electron-forge/maker-deb",
@@ -56,6 +59,15 @@
             }
           }
         }
+      ],
+      "plugins": [
+        [
+          "@electron-forge/plugin-electronegativity",
+          {
+            "isSarif": true
+          }
+        ],
+        ["@electron-forge/plugin-auto-unpack-natives"]
       ]
     }
   },
@@ -73,6 +85,8 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.0.0-beta.65",
+    "@electron-forge/plugin-electronegativity": "^6.0.0-beta.65",
     "@electron-forge/publisher-github": "^6.0.0-beta.54",
     "electron": "15.5.5"
   }

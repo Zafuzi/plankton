@@ -46,7 +46,7 @@ const server = expressServer.listen(0, function()
 	app.on('ready', createWindow);
 });
 
-const createWindow = () =>
+const createWindow = async function() 
 {
 	const iconPath = process.platform !== 'darwin' ? 'Icon/Icon.ico' : 'Icon/Icon.icns';
 	
@@ -57,10 +57,13 @@ const createWindow = () =>
 		icon: path.resolve(__dirname, "./Icon/Icon.icns")
 	});
 	
-	mainWindow.loadURL("http://localhost:" + server.address().port);
+	await mainWindow.loadURL("http://localhost:" + server.address().port)
+	mainWindow.setTitle(`Plankton - ${process.env.npm_package_version}`);
+
 
 	// Open the DevTools.
 	mainWindow.webContents.openDevTools();
+
 };
 
 // This method will be called when Electron has finished

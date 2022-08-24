@@ -1,6 +1,6 @@
 delete require.cache[module.filename];	// always reload
 
-const { app, dialog } = require('electron');
+const { app, dialog, shell} = require('electron');
 const path = require("path");
 const fs = require("fs");
 const HERE = path.resolve(__dirname);
@@ -170,6 +170,34 @@ module.exports = async function(input, _okay, _fail)
 			console.error(e);
 		}
 		
+	}
+
+	if(action === "openAllGamesFolder")
+	{
+		const {shell} = require('electron');
+		await shell.openPath(path.resolve(datastore.gamesPath));
+
+		okay({message: "success"});
+		return true;
+	}
+	
+	if(action === "openGameFolder")
+	{
+		const {folder} = input;
+		if(!folder)
+		{
+			fail({message: "No game folder provided"});
+			return false;
+		}
+
+		const {shell} = require('electron');
+
+		//shell.showItemInFolder(folder);
+		console.log(folder);
+		await shell.openPath(folder);
+
+		okay({message: "success"});
+		return true;
 	}
 
 	console.error("--- Action does not exist:\t\t", action);

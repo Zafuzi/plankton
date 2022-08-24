@@ -1,3 +1,4 @@
+const APP_VERSION = "v1.7.2 - Alpha";
 const {app, BrowserWindow, session} = require('electron');
 const path = require('path');
 const fs = require("fs");
@@ -108,7 +109,7 @@ const createWindow = async function()
 
 
 	await mainWindow.loadURL("http://localhost:" + server.address().port);
-	mainWindow.setTitle(`Plankton - ${process.env.npm_package_version}`);
+	mainWindow.setTitle(`Plankton - ${APP_VERSION}`);
 
 	mainWindow.webContents.session.setPermissionRequestHandler((webContents, permission, callback) =>
 	{

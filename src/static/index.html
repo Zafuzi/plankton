@@ -11,9 +11,12 @@
 		<main class="dashboard">
 			<section class="flex flow-row-wrap align-center justify-space-between gap-8">
 				<form class="flex flow-row align-center gap-24" id="changeGamesPath">
-					<block>
-						<p> Games Path: <b id="gamesPath">__path__</b> </p>
-					</block>
+					<p class="hover-positive" id="openGamesFolder">
+						<block>
+							Games Path: <b id="gamesPath">__path__</b>
+						</block>
+						<i class="icon ion-folder"></i>
+					</p>
 					<button class="button">Change Path</button>
 				</form>
 				
@@ -40,9 +43,9 @@
 								</a>
 									
 								<div class="flex flow-row align-center gap-24 gameActions">
-									<i class="icon ion-play neutral-dark hover-positive"></i>
-									<i class="icon ion-folder neutral hover-positive"></i>
-									<i class="icon ion-close neutral hover-assertive"></i>
+									<i class="icon ion-play neutral-dark hover-positive" data-action="playGame"></i>
+									<i class="icon ion-folder neutral hover-positive" data-action="openGameFolder"></i>
+									<i class="icon ion-close neutral hover-assertive" data-action="deleteGame"></i>
 								</div>
 							</li>
 						</block>

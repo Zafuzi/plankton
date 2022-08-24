@@ -36,6 +36,9 @@ jobs:
       
   publish_on_win:
     runs-on: windows-latest
+    env:
+      WIX_PATH_CANDLE: "C:/Program Files (x86)/WiX Toolset {{version}}/bin/candle.exe"
+      WIX_PATH_LIGHT: "C:/Program Files (x86)/WiX Toolset {{version}}/bin/light.exe"
     steps:
     - uses: actions/checkout@v2       
     - uses: actions/setup-node@master

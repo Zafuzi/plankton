@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, session} = require('electron');
 const path = require('path');
 const fs = require("fs");
 
@@ -31,6 +31,18 @@ const HERE = require("path").dirname(module.filename);
 
 const expressServer = require("rpc")("/api/", HERE + "/api/", {cors: true, dev: true});
 expressServer.use(require("serve-static")(HERE + "/static"));
+expressServer.use((req, res, next) =>
+{
+	res.set({
+		"Access-Control-Allow-Origin": "*",
+		"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+		"Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
+		"Content-Security-Policy": "default-src 'self'",
+		"X-Content-Security-Policy": "default-src 'self'",
+		"X-WebKit-CSP": "default-src 'self'"
+	});
+	next();
+});
 
 // todo move this to a let and function call so we can restart the server if it dies, like on macos when windows get moved to the appbar
 const server = expressServer.listen(0, function()
@@ -39,24 +51,84 @@ const server = expressServer.listen(0, function()
 	app.on('ready', createWindow);
 });
 
-const createWindow = async function() 
+
+app.on('web-contents-created', (event, contents) =>
+{
+
+	contents.on('will-attach-webview', (event, webPreferences, params) =>
+	{
+		// Strip away preload scripts if unused or verify their location is legitimate
+		delete webPreferences.preload;
+
+		// Disable Node.js integration
+		webPreferences.nodeIntegration = false;
+
+		// Verify URL being loaded
+		if(!params.src.startsWith(`http://localhost:${server.address().port}`))
+		{
+			event.preventDefault();
+		}
+	});
+
+	contents.on('will-navigate', (event, navigationUrl) =>
+	{
+		const parsedUrl = new URL(navigationUrl);
+
+		if(parsedUrl.origin !== `http://localhost:${server.address().port}`)
+		{
+			event.preventDefault();
+		}
+	});
+});
+
+let urlFilter = {
+	urls: [`http://localhost:${server.address().port}/*`]
+}
+
+
+
+const createWindow = async function()
 {
 	const iconPath = process.platform !== 'darwin' ? 'Icon/Icon.ico' : 'Icon/Icon.icns';
-	
+
 	// Create the browser window.
 	const mainWindow = new BrowserWindow({
 		width: 1600,
 		height: 900,
-		icon: path.resolve(__dirname, "./Icon/Icon.icns")
+		icon: path.resolve(__dirname, "./Icon/Icon.icns"),
+
+		webPreferences: {
+			preload: path.join(app.getAppPath(), 'src/preload.js'),
+			contextIsolation: true,
+			nodeIntegration: false,
+			nodeIntegrationInWorker: false,
+			allowRunningInsecureContent: false
+		}
 	});
-	
-	await mainWindow.loadURL("http://localhost:" + server.address().port)
+
+
+	await mainWindow.loadURL("http://localhost:" + server.address().port);
 	mainWindow.setTitle(`Plankton - ${process.env.npm_package_version}`);
 
+	mainWindow.webContents.session.setPermissionRequestHandler((webContents, permission, callback) =>
+	{
+		if(webContents.getURL() !== `http://localhost:${server.address().port}` && permission === 'openExternal')
+		{
+			return callback(false);
+		}
+		else
+		{
+			return callback(true);
+		}
+	});
+
+	session.defaultSession.webRequest.onBeforeSendHeaders(urlFilter, (details, callback) => {
+		details.requestHeaders['User-Agent'] = 'PlanktonApp'
+		callback({ requestHeaders: details.requestHeaders })
+	})
 
 	// Open the DevTools.
-	mainWindow.webContents.openDevTools();
-
+	// mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -83,6 +155,3 @@ app.on('activate', () =>
 		createWindow();
 	}
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.

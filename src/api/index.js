@@ -99,18 +99,35 @@ module.exports = async function(input, _okay, _fail)
 	
 	if(action === "getAllGames")
 	{
-		let games = fs.readdirSync(datastore.gamesPath);
-		console.log(games);
-		let gamesList = [];
-		games.forEach(function(game)
+		try
 		{
-			gamesList.push({
-				name: game,
-				path: path.resolve(datastore.gamesPath + "/" + game)
-			})
-		});
-		okay({games:gamesList});
-		return true;
+			fs.readdir(datastore.gamesPath, function(error, games)
+			{
+				if(error)
+				{
+					fail({message: "Failed to read games directory", action, error, games});
+					return false;
+				}
+				
+				console.log(games);
+				let gamesList = [];
+				games.forEach(function(game)
+				{
+					gamesList.push({
+						name: game,
+						path: path.resolve(datastore.gamesPath + "/" + game)
+					})
+				});
+				okay({games:gamesList});
+			});
+			return true;
+		}
+		catch(e)
+		{
+			console.error(e);
+		}
+		
+		return false;
 	}
 
 	console.error("--- Action does not exist:\t\t", action);

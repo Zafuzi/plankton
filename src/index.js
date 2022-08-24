@@ -1,5 +1,32 @@
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
+const fs = require("fs");
+
+const DS = require("ds").DS;
+const datastore = new DS(path.resolve(__dirname, "api/config.json"));
+
+if(!datastore.gamesPath)
+{
+	datastore.gamesPath = path.resolve(process.env.USERPROFILE + "\\Documents\\PlanktonGames");
+	datastore.save();
+}
+const DEFAULT_GAMES_DIR = datastore.gamesPath;
+
+fs.readdir(datastore.gamesPath, function(error, result)
+{
+	if(error && error.code === "ENOENT")
+	{
+		console.log("games folder does not exist, creating");
+		fs.mkdir(datastore.gamesPath, function(error, result)
+		{
+			if(error)
+			{
+				console.error("failed to create games directory", error, result);
+			}
+		});
+	}
+});
+
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if(require('electron-squirrel-startup'))

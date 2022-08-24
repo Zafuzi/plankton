@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<main class="dashboard">
-			<section class="flex flow-row align-center justify-space-between gap-8">
+			<section class="flex flow-row-wrap align-center justify-space-between gap-8">
 				<form class="flex flow-row align-center gap-24" id="changeGamesPath">
 					<block>
 						<p> Games Path: <b id="gamesPath">__path__</b> </p>
@@ -25,8 +25,8 @@
 				</form>
 			</section>
 			
-			<section>
-				<h2>Your Games</h2>
+			<h2>Your Games</h2>
+			<section class="gamesListContainer">
 				<article>
 					<ul class="flex flow-column gap-8 gamesList">
 						<block>

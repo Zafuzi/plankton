@@ -7,11 +7,17 @@
 	flex-flow: column;
 	
 	gap: 24px;
+	max-height: calc(100vh - 100px);
 }
 
 .gamesList {
 	padding: 0;
 	margin: 0;
+}
+
+.gamesListContainer {
+	max-width: 100%;
+	overflow-y: auto;
 }
 
 .game {
@@ -27,6 +33,11 @@
 	color: var(--lighter);
 	text-decoration: none;
 	width: 100%;
+	
+	max-width: 500px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .game p {
 	font-size: 14pt;

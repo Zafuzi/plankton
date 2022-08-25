@@ -1,0 +1,15 @@
+{
+  "template-version": "0.0.1",
+  "game-version": "0.0.1",
+  "game-name": "Game Template",
+  
+  "images": [
+    "data/Icon.png"
+  ],
+  "sounds": [
+    "data/plink.ogg"
+  ],
+  "things": [
+    "things/square"
+  ]
+}

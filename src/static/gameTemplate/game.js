@@ -1,78 +1,72 @@
+let pixiApp = new PIXI.Application({width: 800, height: 600});
+
+let images, sounds, assets = {};
 let startup = sleepless.runq();
 
-let TEMPLATE_VERSION = 0.1;
-let images;
-let sounds;
-let things;
-
-let screen = vec(800, 600);
-let titleFont = load_font("Arial", 30, "#F09D28");
-let assets = {};
-
+// get config
 startup.add(function(next)
 {
 	loadConfig(function(content)
 	{
-		console.log(content);
+		images = content.images || [];
+		sounds = content.sounds || [];
+		things = content.things || [];
 		
-		images = content?.images || [];
-		sounds = content?.sounds || [];
-		things = content?.things || [];
+		next();
+	});
+})
+
+// load sprites
+startup.add(function(next)
+{
+	let loader = sleepless.runq();
+	
+	loader.add(function(loaderNext)
+	{
+		for(let i = 0; i < images.length; i++)
+		{
+			let image = images[i];
+			assets[image] = PIXI.Sprite.from(image);
+			// pixiApp.stage.addChild(assets[image]);
+		}
 		
-		TEMPLATE_VERSION = content?.templateVersion || "0.0.1";
+		loaderNext();
+	});
+	
+	loader.add(function(loaderNext)
+	{
+		for(let i = 0; i < things.length; i++)
+		{
+			let thing = things[i];
+			
+			loadThing(thing);
+		}
 		
-		console.log(`TEMPLATE VERSION: ${TEMPLATE_VERSION}`);
+		loaderNext();
+	});
+	
+	loader.run(function()
+	{
 		next();
 	});
 });
 
-startup.add(function(next)
+// append canvas and start engine
+startup.run(function()
 {
-	console.log(images, sounds, things);
-
-	// title/loading screen
-	let title = new Thing();
-	let load_progress = 0;
-	let load_file = "";
-
-	title.listen( "draw_4", ( mouse_x, mouse_y ) => {
-		if( load_progress < 1.0 ) {
-			draw_text( "Tidepool", screen.x * 0.5, screen.y * 0.5 - 15, titleFont, "center", 0.4 );
-			draw_text( "Loading: "+round(load_progress * 100)+"% "+load_file, screen.x * 0.5 + 15, screen.y * 0.4, titleFont, "center", 0.5 );
-		} else  {
-			draw_text( "Tidepool", screen.x * 0.5, screen.y * 0.5 - 15, titleFont, "center", 1 );
-			draw_text( "Click to Start ", screen.x * 0.5, screen.y * 0.5 + 15, titleFont, "center", 1 );
-
-			load_file = "";
-		}
-	} );
-
-	load_assets( images, sounds, ( progress, file, asst, type ) => {
-
-		load_progress = progress;
-		load_file = file;
-		assets[ file ] = asst;
-
-		console.log( load_progress+"% "+type+" "+file );
-		if( load_progress >= 1.0 ) {
-			title.listen( "mousedown", () => {
-				title.destroy();	// destroy the title page
-				debug = true;
-				next();
-			});
-		}
-
-	}, console.error );
-
-	tick( true ); // turn on ticking; tick handlers will be called
-});
-
-startup.add(function(next)
-{
-	things.forEach(function(thing)
-	{
-		loadThing(thing);
+	console.log("Ready for trouble...");
+	document.body.appendChild(pixiApp.view);
+	
+	// Add a variable to count up the seconds our demo has been running
+	let elapsed = 0.0;
+	// Tell our application's ticker to run a new callback every frame, passing
+	// in the amount of time that has passed since the last tick
+	pixiApp.ticker.add((delta) => {
+		// Add the time to our total elapsed time
+		elapsed += delta;
+		// Update the sprite's X position based on the cosine of our elapsed time.  We divide
+		// by 50 to slow the animation down a bit...
+		//sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;
 	});
 });
 
-startup.run();

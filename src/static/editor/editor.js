@@ -14,7 +14,7 @@ if(queryData.folder)
 			frame.height = "600";
 			frame.src = "/tmp_currentGame/index.html";
 		
-		sleepless.QS1("#gameFrame").html(frame.outerHTML);
+		// sleepless.QS1("#gameFrame").html(frame.outerHTML);
 		console.log(response);
 	}, console.error);
 }

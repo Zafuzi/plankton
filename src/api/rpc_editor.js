@@ -1,10 +1,12 @@
 delete require.cache[module.filename];
 
-const Module = require("./rpc_module");
+const {app} = require("electron");
 const fs = require("fs");
 const path = require("path");
 const sleepless = require("sleepless");
+const Module = require("./rpc_module");
 const {copyDir} = require("./fs_extra");
+
 const L = sleepless.L.mkLog("--- Editor\t\t")(5);
 
 class EditorMethods extends Module
@@ -29,13 +31,14 @@ class EditorMethods extends Module
 		}
 
 		const gamePath = path.resolve(self.datastore.gamesPath, folder);
+		const tmpGamePath = path.resolve(app.getAppPath(), "tmp_currentGame");
 
-		fs.rmSync(path.resolve(__dirname, "../static/tmp_currentGame"), {recursive: true, force: true});
+		fs.rmSync(tmpGamePath, {recursive: true, force: true});
 		
 		// todo copy game to tmp and return path
 		try{
-			await copyDir(gamePath, path.resolve(__dirname, "../static/tmp_currentGame"));
-			self.okay({path: gamePath});
+			await copyDir(gamePath, tmpGamePath);
+			self.okay({path: tmpGamePath});
 			return true;
 		}
 		catch(e)

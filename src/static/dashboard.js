@@ -43,21 +43,17 @@ homeQueue.add(function(next)
 			{
 				instance.addEventListener("click", function(event)
 				{
-					// debounce clicking on buttons
-					if(event.target.dataset?.name)
-					{
-						window.location.href = `/editor?gameName=${data.name}`;
-						return true;
-					}
+
 					
 					let action = event.target.dataset?.action;
 					if(action === "playGame")
 					{
-						
+						return false;
 					}
 					if(action === "openGameFolder")
 					{
 						rpc({prefix: "games", action: "openGameFolder", folder: data.path});
+						return false;
 					}
 					if(action === "deleteGame")
 					{
@@ -69,7 +65,11 @@ homeQueue.add(function(next)
 								window.location.reload();
 							});
 						}
+						return false;
 					}
+
+					window.location.href = `/editor?gameName=${data.name}`;
+					return true;
 				});
 			});
 		}

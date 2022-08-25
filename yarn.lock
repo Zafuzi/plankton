@@ -3351,11 +3351,6 @@
   "resolved" "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.1.2.tgz"
   "version" "1.1.2"
 
-"squids@^6.1.2":
-  "integrity" "sha512-pITY8sHxkb755udQK86AftneBTWica2PQbYdAcbpO3scha5GmxjUIxias7tuy0KVUi/3F0AqkIZL575fdcNWhg=="
-  "resolved" "https://registry.npmjs.org/squids/-/squids-6.1.2.tgz"
-  "version" "6.1.2"
-
 "ssri@^9.0.0":
   "integrity" "sha512-o57Wcn66jMQvfHG1FlYbWeZWW/dHZhJXjpIcTfXldXEk5nz5lStPo3mK0OJQfGR3RbZUlbISexbljkJzuEj/8Q=="
   "resolved" "https://registry.npmjs.org/ssri/-/ssri-9.0.1.tgz"

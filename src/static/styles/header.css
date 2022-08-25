@@ -8,9 +8,9 @@
 
 nav {
 	max-width: 1200px;
-	margin: 12px auto;
-	padding: 12px 24px;
-	border-bottom: 2px solid var(--nav-color-fg);
+	margin: 8px auto;
+	padding: 8px;
+	/*border-bottom: 2px solid var(--nav-color-fg);*/
 	border-radius: var(--radius-2);
 	
 	display: flex;
@@ -27,7 +27,7 @@ nav a {
 	color: var(--nav-color-fg);
 	text-decoration: none;
 	
-	border-radius: var(--radius-48);
+	border-radius: var(--input-radius);
 }
 
 nav a.active {

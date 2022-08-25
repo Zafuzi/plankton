@@ -1,4 +1,4 @@
-const APP_VERSION = "v1.8.0 - Bravo";
+const APP_VERSION = "v1.10.0 - Masterful Sitting";
 const {app, BrowserWindow, session} = require('electron');
 const path = require('path');
 const fs = require("fs");

@@ -90,3 +90,5 @@ out/
 
 config.json
 /src/static/tmp_currentGame/
+
+package.json

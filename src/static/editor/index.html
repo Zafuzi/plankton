@@ -9,19 +9,25 @@
 	</head>
 	<body>
 	
-		<main class="editor">
-			<h1>Editor</h1>
-			<p>Game ID:</p>
-			<block>
-				<span id="gameName">__name__</span>
-			</block>
+		<main id="editor">
+			<header class="flex flow-row align-center justify-space-between" id="gameHeader">
+				<p>Game ID:
+					<block>
+						<span id="gameName">__name__</span>
+					</block>
+				</p>
+			</header>
 			
-			<br/>
-			<block>
-<!--				<span id="gameFrame"></span>-->
-				<!-- <iframe width="800" height="600" src="../tmp_currentGame/index.html"></iframe> -->
-				 <iframe width="800" height="600" src="../gameTemplate/index.html"></iframe> 
-			</block>
+			<section id="gameElements"></section>
+			
+			<section id="gameFrame"></section>
+			<section class="flex flow-row align-center justify-center" id="gameFrameControls">
+				<button class="button" id="reloadGame">Reload Game</button>
+			</section>
+			
+			
+			<section id="gameTextEditor"></section>
+			<section id="gameInspector"></section>
 		</main>
 
 		<script src="/scripts/sleepless.js"></script>

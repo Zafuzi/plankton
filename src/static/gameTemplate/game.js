@@ -1,7 +1,8 @@
-let pixiApp = new PIXI.Application({width: 800, height: 600});
+let engine = new PIXI.Application({width: 1280, height: 720});
 
 let images, sounds, assets = {};
 let startup = sleepless.runq();
+let things;
 
 // get config
 startup.add(function(next)
@@ -11,62 +12,126 @@ startup.add(function(next)
 		images = content.images || [];
 		sounds = content.sounds || [];
 		things = content.things || [];
-		
+
 		next();
 	});
-})
+});
 
-// load sprites
+// load sprites, sounds, and things
 startup.add(function(next)
 {
 	let loader = sleepless.runq();
-	
+
 	loader.add(function(loaderNext)
 	{
+		let imageLoader = sleepless.runp();
+
 		for(let i = 0; i < images.length; i++)
 		{
 			let image = images[i];
-			assets[image] = PIXI.Sprite.from(image);
-			// pixiApp.stage.addChild(assets[image]);
+
+			imageLoader.add(function(imageLoaderNext)
+			{
+				loadImage(image, function(loadedImage)
+				{
+					assets[image] = loadedImage;
+					imageLoaderNext();
+				}, function(error)
+				{
+					console.error("Failed to load: " + image, error);
+					imageLoaderNext();
+				});
+			});
 		}
-		
-		loaderNext();
+
+		imageLoader.run(function()
+		{
+			loaderNext();
+		});
 	});
-	
+
 	loader.add(function(loaderNext)
 	{
+		let soundLoader = sleepless.runp();
+
+		for(let i = 0; i < sounds.length; i++)
+		{
+			let sound = sounds[i];
+
+			soundLoader.add(function(soundLoaderNext)
+			{
+				loadSound(sound, function(loadedSound)
+				{
+					assets[sound] = loadedSound;
+					soundLoaderNext();
+				}, function(error)
+				{
+					console.error("Failed to load: " + sound, error);
+					soundLoaderNext();
+				});
+			});
+		}
+
+		soundLoader.run(function()
+		{
+			loaderNext();
+		});
+	});
+
+	// ALL IMAGES AND SOUNDS SHOULD BE READY BY NOW
+	loader.add(function(loaderNext)
+	{
+		let thingLoader = sleepless.runp();
+
 		for(let i = 0; i < things.length; i++)
 		{
 			let thing = things[i];
-			
-			loadThing(thing);
+
+			thingLoader.add(function(thingLoaderNext)
+			{
+				loadThing(thing, thingLoaderNext);
+			});
 		}
-		
-		loaderNext();
+
+		thingLoader.run(function()
+		{
+			loaderNext();
+		});
 	});
-	
+
 	loader.run(function()
 	{
 		next();
 	});
 });
 
+let elapsed = 0.0;
 // append canvas and start engine
 startup.run(function()
 {
 	console.log("Ready for trouble...");
-	document.body.appendChild(pixiApp.view);
-	
-	// Add a variable to count up the seconds our demo has been running
-	let elapsed = 0.0;
-	// Tell our application's ticker to run a new callback every frame, passing
-	// in the amount of time that has passed since the last tick
-	pixiApp.ticker.add((delta) => {
-		// Add the time to our total elapsed time
+	document.body.appendChild(engine.view);
+
+	Object.values(assets).forEach(asset =>
+	{
+		if(asset.start instanceof Function)
+		{
+			asset.start();
+			engine.stage.addChild(asset);
+		}
+	});
+
+	elapsed = 0.0;
+	engine.ticker.add((delta) =>
+	{
 		elapsed += delta;
-		// Update the sprite's X position based on the cosine of our elapsed time.  We divide
-		// by 50 to slow the animation down a bit...
-		//sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;
+		Object.values(assets).forEach(asset =>
+		{
+			if(asset.update instanceof Function)
+			{
+				asset.update();
+			}
+		});
 	});
 });
 

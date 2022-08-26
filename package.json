@@ -21,10 +21,15 @@
     "forge": {
       "packagerConfig": {
         "executableName": "plankton",
-        "icon": "./Icon/Icon",
-        "asar": false
+        "icon": "./Icon/Icon"
       },
       "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_publish_example"
+          }
+        },
         {
           "name": "@electron-forge/maker-wix",
           "config": {
@@ -75,6 +80,7 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-wix": "^6.0.0-beta.65",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.65",
     "@electron-forge/publisher-github": "^6.0.0-beta.54",
     "electron": "15.5.5"
   }

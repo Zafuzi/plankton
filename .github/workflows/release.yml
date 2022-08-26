@@ -40,6 +40,12 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npm run publish
 
+    - name: Save build
+      uses: actions/upload-artifact@v2
+      with:
+        name: artifacts
+        path: build/artifacts/
+
   publish_on_mac:
     runs-on: macos-latest
     steps:
@@ -71,6 +77,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npm run publish
+
+    - name: Save build
+      uses: actions/upload-artifact@v2
+      with:
+        name: artifacts
+        path: build/artifacts/
       
   publish_on_win:
     runs-on: windows-latest
@@ -109,3 +121,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npm run publish
+
+    - name: Save build
+      uses: actions/upload-artifact@v2
+      with:
+        name: artifacts
+        path: build/artifacts/

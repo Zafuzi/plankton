@@ -1,7 +1,7 @@
 {
   "name": "plankton",
   "productName": "Plankton",
-  "version": "1.10.0",
+  "version": "1.10.2",
   "description": "A minimal editor for the Squids library",
   "main": "src/index.js",
   "scripts": {
@@ -22,7 +22,7 @@
       "packagerConfig": {
         "executableName": "plankton",
         "icon": "./Icon/Icon",
-        "asar": true
+        "asar": false
       },
       "makers": [
         {
@@ -59,11 +59,6 @@
             }
           }
         }
-      ],
-      "plugins": [
-        [
-          "@electron-forge/plugin-auto-unpack-natives"
-        ]
       ]
     }
   },
@@ -80,7 +75,6 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-wix": "^6.0.0-beta.65",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "@electron-forge/plugin-auto-unpack-natives": "^6.0.0-beta.65",
     "@electron-forge/publisher-github": "^6.0.0-beta.54",
     "electron": "15.5.5"
   }

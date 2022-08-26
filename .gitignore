@@ -89,6 +89,7 @@ typings/
 out/
 
 config.json
-/src/static/tmp_currentGame/
+tmp/
+currentGame/
 
 package.json

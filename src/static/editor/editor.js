@@ -20,7 +20,7 @@ editorStartup.add(function(next)
 			iframe = document.createElement("iframe");
 			iframe.height = "1280px";
 			iframe.width = "720px";
-			iframe.src = "/tmp_currentGame/index.html";
+			iframe.src = "tmp/currentGame/index.html";
 			iframe.addEventListener("load", function(event)
 			{
 				scaleGameFrame();

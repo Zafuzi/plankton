@@ -1,5 +1,7 @@
 const APP_VERSION = "v1.10.2 - Crystal Pockets";
 const {app, BrowserWindow, session} = require('electron');
+if (require('electron-squirrel-startup')) return app.quit();
+
 const path = require('path');
 const fs = require("fs");
 

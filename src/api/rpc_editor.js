@@ -30,8 +30,10 @@ class EditorMethods extends Module
 			return false;
 		}
 
+		console.log(app.getAppPath());
+
 		const gamePath = path.resolve(self.datastore.gamesPath, folder);
-		const tmpGamePath = path.resolve(app.getAppPath(), "tmp_currentGame");
+		const tmpGamePath = path.resolve(app.getAppPath(), "src/static/editor/tmp/currentGame");
 
 		fs.rmSync(tmpGamePath, {recursive: true, force: true});
 		
@@ -43,7 +45,7 @@ class EditorMethods extends Module
 		}
 		catch(e)
 		{
-			self.fail({message: "Failed to copy game to local tmp", error: e, action: self.action});
+			self.fail({message: "Failed to copy game to local tmp", error: e, action: self.action, gamePath, tmpGamePath});
 			return false;
 		}
 	}
